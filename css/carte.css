@@ -1,0 +1,145 @@
+@media screen and (max-width: 1024px) {
+    #blocMap{
+        flex-direction: column;
+    }
+    
+    #map{
+        min-width:100%;
+    }
+    
+}
+
+body{
+    background-color: #58D3F7;
+}
+
+#titre
+{
+    background-color: rgba(0,0,0,0.5);
+    color: white;
+    text-align: Left;
+    padding: 10px;
+    border-radius: 0px 50px 50px 0px;
+    box-shadow: 2px 2px 10px grey;
+    
+}
+
+#slider{
+    border: 1px solid #D8D8D8;
+}
+
+#slider, img
+{
+    
+    width : 100%;
+    height: 450px;
+}
+#blocMap {
+    display: inline-flex;
+    
+    height: 500px;
+    width: 100%;
+}
+#blocInfo
+{
+    width: 50%;
+    height: 100%;
+    
+    
+}
+#info
+{
+    text-align: center;
+    color: white;
+    font-size: 65px;
+}
+
+#map {
+    width: 50%;
+    height: 100%;
+}
+
+#contentInfo{
+    height: 50%;
+    
+}
+
+#contentInfo p {
+    margin-top: 30px;
+    margin-left: 70px;
+    font-size: 20px;
+    width: 60%;
+    
+}
+
+#contentInfo p:hover {
+    border-right: 5px solid white;
+    box-shadow: 2px 2px 2px white;
+}
+
+#paragraphe{
+    background-color: white;
+    border: 1px solid black;
+}
+
+#infoTitle {
+    text-align: center;
+    color: white;
+    background: linear-gradient(to right, #8258FA, aqua) ;
+    border: 2px solid white;
+    border-radius: 50px 50px 50px 50px;
+    
+}
+
+#reservation{
+    background-color: #8258FA;
+    width: 30%;
+    height: 100px;
+    padding: auto;
+    color: white;
+    font-size: 20px;
+    float: left;
+   margin-top: 18%;
+}
+
+#confirm{
+    background-color: aqua;
+    width: 30%;
+    height: 100px;
+    border: 1px solid red;
+    padding: auto;
+    color: white;
+    font-size: 20px;
+    float: right;
+    margin-top: 18%;
+    
+}
+
+#reservation:hover {
+    background-color: darkturquoise;
+    color: white;
+}
+
+#canvas {
+    width: 30%;
+    height: 100px;
+    margin-top: 5%;
+    margin-left: 5%;
+    background-color: white;
+    border: 1px solid black;
+    margin-top: 18%;
+}
+
+#confirm:hover {
+    background-color: rebeccapurple;
+}
+
+#blocReserv {
+    width: 100%;
+    height: 100px;
+    text-align: center;
+    border-radius: 0px 0px 50px 50px;
+    background-color: rgba(0,0,0,0.5);
+    color: white;
+    font-size: 24px;
+}

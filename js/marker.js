@@ -31,7 +31,13 @@ function MarkerClusterer() {
             Marker.addListener('click', function () {
 
                 blocInfo.innerHTML = contentInfo;
-                document.getElementById("blocInfo").appendChild(reservation);
+                
+                
+                if (statMark[z].available_bikes === 0) {
+                    document.getElementById("blocInfo").appendChild(indispo);
+                } else {
+                    document.getElementById("blocInfo").appendChild(reservation);
+                }
                 
             });
 
@@ -53,8 +59,13 @@ function MarkerClusterer() {
 
     var blocInfo = document.createElement("div");
     blocInfo.id = "blocInfo";
-    var Info = "<p id ='info'>Cliquez <br/> sur un marqueur pour afficher les informations de la station associé !</p>";
+    var Info = "<p id ='info'>Cliquez <br/> sur un marqueur pour afficher les informations de la station associée !</p>";
     blocInfo.innerHTML = Info;
+    
+    // Phrase indisponibilité
+    var indispo = document.createElement('p');
+    indispo.id = "indispo";
+    indispo.textContent = "Plus de vélo disponible , merci de choisir une autre station !";
 
     // Création bouton reserver
     var reservation = document.createElement("INPUT");

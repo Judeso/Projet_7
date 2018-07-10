@@ -1,5 +1,6 @@
 function maReservation() {
 
+    // Initialise l'objet reseration
     this.init = function () {
 
         var user = {
@@ -7,81 +8,112 @@ function maReservation() {
             nb: 1,
             expire: setTimeout(function () {
                 localStorage.removeItem('user');
-            }, 1000 * 60 * 20),
-            time: setInterval(function () {
-                
-            })
-             
+            }, 1000 * 60 * 20)
         }
 
         localStorage.setItem('user', JSON.stringify(user));
         this.obj = JSON.parse(localStorage.getItem('user'));
         console.log(this.obj);
 
-        this.time()
+
+        this.insertTime();
+
 
     }
 
+    // Insertion du span time
+    this.insertTime = function () {
+
+        this.timer = document.createElement("span");
+        this.timer.id = "timer";
+
+        this.min = 20;
+        this.sec = 00;
+
+        this.timer.textContent = this.min + ':' + this.sec;
+
+        blocReserv.innerHTML = "<p>Vous avez réservé un vélo à la station " + this.obj.name + " pendant encore : </p>";
+        document.getElementById("blocReserv").appendChild(this.timer);
+        this.countDown();
+
+    }
+
+    // Insertion bloc Reservation au démarrage
     this.insert = function () {
-        //window.onbeforeunload = function (){
-        //localStorage.removeItem('user')};
-    
-        
+        this.timer = document.createElement("span");
+        this.timer.id = "timer";
+
+        this.timing = JSON.parse(localStorage.getItem('timing'));
+        console.log(this.timing);
+        this.timer.textContent = this.timing.min + ':' + this.timing.sec;
+
+        var blocReserv = document.createElement("div");
+        blocReserv.id = "blocReserv";
+
+        this.obj = JSON.parse(localStorage.getItem('user'));
+
         if (localStorage.getItem('user')) {
-            var blocReserv = document.createElement("div");
-            blocReserv.id = "blocReserv";
 
-            var obj = JSON.parse(localStorage.getItem('user'));
-
-
-            blocReserv.innerHTML = "<p>Vous avez un vélo de réserver : " + obj.name + " jusqu'a : </p>";
-            console.log(obj);
+            blocReserv.innerHTML = "<p>Vous avez un vélo de réserver : " + this.obj.name + " pour encore : </p>";
+            console.log(this.obj);
             document.body.appendChild(blocReserv);
+            document.getElementById("blocReserv").appendChild(this.timer)
+            this.countDown();
+
 
         } else {
-            var blocReserv = document.createElement("div");
-            blocReserv.id = "blocReserv";
+
             blocReserv.innerHTML = "<p>Vous n'avez aucun vélo de réservé.</p>";
             document.body.appendChild(blocReserv);
         }
 
     }
 
-    this.time = function () {
-
-
-        this.timer = document.createElement("span");
-        this.timer.id = "timer";
-        this.timer.textContent = "20:00";
-        blocReserv.innerHTML = "<p>Vous avez réservé un vélo à la station " + this.obj.name + " pendant encore : </p>";
-        document.getElementById("blocReserv").appendChild(this.timer);
-
-
-        var twentyMinutes = 60 * 20,
-            display = document.querySelector('#timer');
-        startTimer(twentyMinutes, display);
-
-
-        function startTimer(duration, display) {
-            var timing = duration,
-                minutes, seconds;
+    // TIMER
+    this.countDown = function () {
+        
+        function startTimer() {
             setInterval(function () {
-                minutes = parseInt(timing / 60, 10)
-                seconds = parseInt(timing % 60, 10);
+                if (this.sec === 0) {
 
-                minutes = minutes < 10 ? "0" + minutes : minutes;
-                seconds = seconds < 10 ? "0" + seconds : seconds;
+                    this.sec = 59;
+                    this.min = this.min - 1;
 
-                this.timer.textContent = minutes + ":" + seconds;
+                    console.log(this.min + ":" + this.sec);
+                    document.getElementById("timer").textContent = this.min + ":" + this.sec;
 
-                if (--timing < 0) {
-                    blocReserv.textContent = "Votre Réservation à éxpiré ! ";
-                    this.timer.textContent = "Expiré";
-                    clearInterval();
 
+                } else if (this.sec > 0) {
+
+                    this.sec = this.sec - 1;
+                    console.log(this.min + ":" + this.sec);
+                    document.getElementById("timer").textContent = this.min + ":" + this.sec;
+
+
+                } else if (this.sec === 0 && this.min === 0) {
+
+                    console.log(this.min + ":" + this.sec);
+                    document.getElementById("timer").textContent = "Votre réservation à expiré !";
+                    clearInterval(startTimer);
                 }
-            }, 1000);
-        }
 
+            }, 1000)  
+        };
+        
+        startTimer();
     }
 }
+
+
+
+
+window.addEventListener("beforeunload", function () {
+
+    this.temps = {
+        min: this.min,
+        sec: this.sec
+    };
+
+    localStorage.setItem('timing', JSON.stringify(this.temps));
+
+});

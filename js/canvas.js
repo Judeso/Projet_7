@@ -92,11 +92,13 @@ function Canvas() {
 
         // Quand clique sur Canvas , afficher bouton confirmer
         canvas.addEventListener('click', function () {
+            
             if (!document.getElementById("confirm")){
             document.getElementById("blocInfo").appendChild(confirm);
             }
             
             confirm.addEventListener('click', function () {
+                                                
                 var velo = new maReservation();
                 velo.init();
             });

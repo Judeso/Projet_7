@@ -1,10 +1,3 @@
-var titreElt = document.createElement("h1");
-titreElt.id = "titre";
-titreElt.textContent = "Locations de Velo'V";
-document.body.appendChild(titreElt);
-
-
-
 // SLIDER 
 
 
@@ -21,3 +14,4 @@ map.insert();
 // Bloc Reservation
 var velo = new maReservation();
 velo.insert();
+

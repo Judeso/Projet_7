@@ -1,19 +1,4 @@
 // Carte Gmap velo'v
-function GMap() {
-
-    this.insert = function () {
-        var blocMap = document.createElement("div");
-        blocMap.id = "blocMap";
-        document.body.appendChild(blocMap);
-
-        var map = document.createElement("div");
-        map.id = "map";
-
-        document.getElementById("blocMap").appendChild(map);
-    };
-
-
-}
 
 function initMap() {
     var lyon = {
@@ -24,8 +9,23 @@ function initMap() {
         center: lyon,
         zoom: 15
     });
-    MarkerClusterer();
-    
-    
 
+    // Marker
+    var marker = new MarkerClusterer();
+    marker.init();
+    marker.insert();
 }
+
+
+
+/* 
+    this.insert = function () {
+        var blocMap = document.createElement("div");
+        blocMap.id = "blocMap";
+        document.body.appendChild(blocMap);
+
+        var map = document.createElement("div");
+        map.id = "map";
+
+        document.getElementById("blocMap").appendChild(map);
+    };*/

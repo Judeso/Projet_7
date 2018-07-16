@@ -1,39 +1,13 @@
 <!doctype html>
 <html>
+
 <head>
     <meta charset="utf-8">
-    <title>Test timer</title>
-    </head>
+    <title>Test canvas</title>
+</head>
+
 <body>
-    <div>Registration closes in <span id="timer"></span> minutes!</div>
-<script>
-var min = 20;
-var sec = 00;
-document.getElementById("timer").textContent = min + ":" + sec;
-function startTimer() {
-setInterval(function () {
-    if (sec === 0) {
-        
-        sec = 59;
-        min = min - 1;
-        console.log(min + ":" + sec);
-        document.getElementById("timer").textContent = min + ":" + sec;
-        
-    } else if (sec > 0) {
-        
-        sec = sec - 1;
-        console.log(min + ":" + sec);
-        document.getElementById("timer").textContent = min + ":" + sec;
-        
-    } else if (seconds = 0 && minute === 0) {
-        console.log(min + ":" + sec);
-        document.getElementById("timer").textContent = min + ":" + sec;
-    }
+    
+</body>
 
-}, 1000)
-};
-startTimer()
-
-</script>
-    </body>
 </html>

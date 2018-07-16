@@ -1,19 +1,21 @@
 function maReservation() {
 
+    var self = this;
+
     // Initialise l'objet reseration
     this.init = function () {
 
         var user = {
             name: document.getElementById("infoTitle").textContent,
             nb: 1,
-            expire: setTimeout(function () {
+            /*expire: setTimeout(function () {
                 localStorage.removeItem('user');
-            }, 1000 * 60 * 20)
+            }, 1000 * 60 * 20)*/
         }
 
-        localStorage.setItem('user', JSON.stringify(user));
-        this.obj = JSON.parse(localStorage.getItem('user'));
-        console.log(this.obj);
+        sessionStorage.setItem('user', JSON.stringify(user));
+        self.obj = JSON.parse(sessionStorage.getItem('user'));
+        console.log(self.obj);
 
 
         this.insertTime();
@@ -24,96 +26,118 @@ function maReservation() {
     // Insertion du span time
     this.insertTime = function () {
 
-        this.timer = document.createElement("span");
-        this.timer.id = "timer";
+        self.timer = document.createElement("span");
+        self.timer.id = "timer";
 
-        this.min = 20;
-        this.sec = 00;
+        self.min = 0;
+        self.sec = 10;
 
-        this.timer.textContent = this.min + ':' + this.sec;
 
-        blocReserv.innerHTML = "<p>Vous avez réservé un vélo à la station " + this.obj.name + " pendant encore : </p>";
-        document.getElementById("blocReserv").appendChild(this.timer);
+        self.timer.textContent = self.min + ':' + self.sec;
+
+        blocReserv.innerHTML = "<p>Vous avez réservé un vélo à la station " + self.obj.name + " pendant encore : </p>";
+        document.getElementById("blocReserv").appendChild(self.timer);
         this.countDown();
 
     }
 
     // Insertion bloc Reservation au démarrage
     this.insert = function () {
-        this.timer = document.createElement("span");
-        this.timer.id = "timer";
+        self.timer = document.createElement("span");
+        self.timer.id = "timer";
 
-        this.timing = JSON.parse(localStorage.getItem('timing'));
-        console.log(this.timing);
-        this.timer.textContent = this.timing.min + ':' + this.timing.sec;
+        if ((sessionStorage.getItem('timing')) && (sessionStorage.getItem('user'))) {
+            self.timing = JSON.parse(sessionStorage.getItem('timing'));
+            self.min = self.timing.min;
+            self.sec = self.timing.sec;
 
-        var blocReserv = document.createElement("div");
-        blocReserv.id = "blocReserv";
+            console.log(self.timing);
+            self.timer.textContent = self.min + ':' + self.sec;
 
-        this.obj = JSON.parse(localStorage.getItem('user'));
+            self.blocReserv = document.getElementById("blocReserv");
+            self.obj = JSON.parse(sessionStorage.getItem('user'));
 
-        if (localStorage.getItem('user')) {
+            if (self.obj != null) {
 
-            blocReserv.innerHTML = "<p>Vous avez un vélo de réserver : " + this.obj.name + " pour encore : </p>";
-            console.log(this.obj);
-            document.body.appendChild(blocReserv);
-            document.getElementById("blocReserv").appendChild(this.timer)
-            this.countDown();
+
+                blocReserv.innerHTML = "<p>Vous avez un vélo de réserver : " + self.obj.name + " pour encore : </p>";
+                console.log(self.obj);
+
+                document.getElementById("blocReserv").appendChild(self.timer)
+
+
+            } else {
+
+                document.getElementById("blocReserv").innerHTML = "<p>Vous n'avez aucun vélo de réservé.</p>";
+
+            }
 
 
         } else {
-
-            blocReserv.innerHTML = "<p>Vous n'avez aucun vélo de réservé.</p>";
-            document.body.appendChild(blocReserv);
+            document.getElementById("blocReserv").innerHTML = "<p>Vous n'avez aucun vélo de réservé.</p>";
         }
-
     }
 
     // TIMER
     this.countDown = function () {
+
         
+        self.myVar;
+
         function startTimer() {
-            setInterval(function () {
-                if (this.sec === 0) {
+            self.myVar = setInterval(Timer, 1000)
+        }
 
-                    this.sec = 59;
-                    this.min = this.min - 1;
+        function Timer() {
+            if ((self.sec == 0) && (self.min != 0)) {
 
-                    console.log(this.min + ":" + this.sec);
-                    document.getElementById("timer").textContent = this.min + ":" + this.sec;
+                self.sec = 59;
+                self.min = self.min - 1;
+                console.log(self.min + ":" + self.sec);
+                self.timer.textContent = self.min + ":" + self.sec;
 
+            } else if (self.sec > 0) {
 
-                } else if (this.sec > 0) {
+                self.sec = self.sec - 1;
+                console.log(self.min + ":" + self.sec);
 
-                    this.sec = this.sec - 1;
-                    console.log(this.min + ":" + this.sec);
-                    document.getElementById("timer").textContent = this.min + ":" + this.sec;
-
-
-                } else if (this.sec === 0 && this.min === 0) {
-
-                    console.log(this.min + ":" + this.sec);
-                    document.getElementById("timer").textContent = "Votre réservation à expiré !";
-                    clearInterval(startTimer);
+                if (self.sec < 10) {
+                    self.timer.textContent = self.min + ":0" + self.sec;
+                } else {
+                    self.timer.textContent = self.min + ":" + self.sec;
                 }
 
-            }, 1000)  
+            } else if ((self.min == 0) && (self.sec == 0)) {
+                console.log(self.min + ":" + self.sec);
+                
+                document.getElementById("timer").textContent = self.min + ":" + self.sec;
+                
+                blocReserv.innerHTML = "<p>Votre réservation a expirée ! </p>";
+                sessionStorage.removeItem('user');
+                
+                console.log(sessionStorage.getItem('user'));
+                stop();
+            }
         };
-        
+
+        function stop() {
+            clearInterval(self.myVar);
+        }
+
         startTimer();
     }
+
+    window.addEventListener("beforeunload", function () {
+
+        self.temps = {
+            min: self.min,
+            sec: self.sec
+        };
+
+        sessionStorage.setItem('timing', JSON.stringify(self.temps));
+
+    })
+
+
+
 }
-
-
-
-
-window.addEventListener("beforeunload", function () {
-
-    this.temps = {
-        min: this.min,
-        sec: this.sec
-    };
-
-    localStorage.setItem('timing', JSON.stringify(this.temps));
-
-});

@@ -77,35 +77,50 @@ function Canvas() {
 
 
     this.insert = function () {
+
         var canvas = document.createElement("CANVAS");
         canvas.id = "canvas";
+        canvas.style.width = "30%";
+        canvas.style.height = "100px";
+        
+        /*var eraser = document.createElement("INPUT");
+        eraser.id ="eraser";
+        eraser.type = "button";
+        eraser.value = "Effacer";
+        eraser.onclick = "redraw()";*/
+        
         // SI canvas n'existe pas , ajouter le à blocInfo SINON ne rien faire 
         if (!document.getElementById("canvas")) {
 
-            document.getElementById("blocInfo").appendChild(canvas);
+            document.getElementById("blocButton").appendChild(canvas);
+            //document.getElementById("blocButton").appendChild(eraser);
         }
         
+        
+
         var confirm = document.createElement("INPUT");
-            confirm.id = "confirm";
-            confirm.type = "button";
-            confirm.value = "Confirmer";
+        confirm.id = "confirm";
+        confirm.type = "button";
+        confirm.value = "Confirmer";
+        
 
         // Quand clique sur Canvas , afficher bouton confirmer
-        canvas.addEventListener('click', function () {
-            
-            if (!document.getElementById("confirm")){
-            document.getElementById("blocInfo").appendChild(confirm);
-            }
-            
-            confirm.addEventListener('click', function () {
-                                                
-                var velo = new maReservation();
-                velo.init();
-            });
 
+        canvas.addEventListener('click', function () {
+            if (!document.getElementById("confirm")) {
+
+                document.getElementById("blocButton").appendChild(confirm);
+            }
 
         })
+        
+        confirm.addEventListener('click', function () {
+
+            var velo = new maReservation();
+            velo.init();
+        });
     }
-
-
 }
+
+
+

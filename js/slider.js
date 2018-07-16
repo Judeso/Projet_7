@@ -26,28 +26,29 @@ function Slider() {
         self.imgArray.push(imageTrois);
 
         self.insert();
-        self.total = self.imgArray.length;
 
-        console.log(imageDeux.src)
+
+
+
 
         // Gestion du diaporama avec touche 
         document.addEventListener('keydown', function (e) {
             var key = e.keyCode;
 
             if ((key === 37) && (self.i > 0)) {
-
-                self.myImg.src = self.imgArray[self.i--].src;
+                self.i--;
+                self.myImg.src = self.imgArray[self.i].src;
                 console.log("valeur de l'indice" + self.i);
 
 
-            } else if ((key === 39) && (self.i <= self.total)) {
+            } else if ((key === 39) && (self.i < 2)) {
+                self.i++;
 
-
-                self.myImg.src = self.imgArray[self.i++].src;
+                self.myImg.src = self.imgArray[self.i].src;
                 console.log("valeur de l'indice" + self.i);
                 console.log(self.total)
 
-            } 
+            }
         })
 
     }
@@ -55,22 +56,34 @@ function Slider() {
     // Insertion DOM
     self.insert = function () {
 
-        var titreElt = document.createElement("h1");
-        titreElt.id = "titre";
-        titreElt.textContent = "Locations de Velo'V";
-        document.body.appendChild(titreElt);
-
-        var sliderElt = document.createElement("div");
-        sliderElt.id = "slider";
 
         self.myImg = document.createElement("IMG");
         self.myImg.src = self.imgArray[self.i].src;
 
-        document.body.appendChild(sliderElt);
+
         document.getElementById("slider").appendChild(self.myImg);
 
 
-    };
+    }
+
+    self.slideControl = function () {
+        var prec = document.getElementById('prec');
+        var nxt = document.getElementById('nxt');
+
+        prec.addEventListener('click', function () {
+            self.i--;
+            self.myImg.src = self.imgArray[self.i].src;
+            console.log("valeur de l'indice" + self.i);
+        })
+
+        nxt.addEventListener('click', function () {
+            self.i++;
+
+            self.myImg.src = self.imgArray[self.i].src;
+            console.log("valeur de l'indice" + self.i);
+            console.log(self.total)
+        })
+    }
 
 
 };

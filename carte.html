@@ -5,19 +5,29 @@
     <meta charset="utf-8">
     <title>Carte interactive</title>
     <link rel="stylesheet" href="css/carte.css" />
+    <script src="js/jquery-3.3.1.min.js"></script>
 </head>
 
 <body>
     <h1 id="titre">Location de Vélo'v</h1>
     <div id="slider">
-        <div id="prec"><div class="arrow">&#10094;</div></div>
-        <div id="nxt"><div class="arrow">&#10095;</div></div>
+        <div id="prec">
+            <div class="arrow">&#10094;</div>
+        </div>
+        <div id="nxt">
+            <div class="arrow">&#10095;</div>
+        </div>
     </div>
     <div id="blocMap">
         <div id="map"></div>
-        <div id="blocInfo"></div>
+        <div id="blocInfo">
+        </div>
     </div>
+    <input id="reservation" type="button" value="Réservation" />
+                <canvas id="canvas" style="width: 200; height: 100;"></canvas>
+                <input id="confirm" type="button" value="Confirmer"/>
     <div id="blocReserv"></div>
+
 
     <script src="js/ajax.js"></script>
     <script src="js/reservation.js"></script>

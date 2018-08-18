@@ -8,9 +8,7 @@ function maReservation() {
         var user = {
             name: document.getElementById("infoTitle").textContent,
             nb: 1,
-            /*expire: setTimeout(function () {
-                localStorage.removeItem('user');
-            }, 1000 * 60 * 20)*/
+            
         }
 
         sessionStorage.setItem('user', JSON.stringify(user));
@@ -29,8 +27,8 @@ function maReservation() {
         self.timer = document.createElement("span");
         self.timer.id = "timer";
 
-        self.min = 0;
-        self.sec = 10;
+        self.min = 20;
+        self.sec = 00;
 
 
         self.timer.textContent = self.min + ':' + self.sec;
@@ -137,7 +135,5 @@ function maReservation() {
         sessionStorage.setItem('timing', JSON.stringify(self.temps));
 
     })
-
-
 
 }

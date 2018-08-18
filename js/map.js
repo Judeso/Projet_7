@@ -16,16 +16,3 @@ function initMap() {
     marker.insert();
 }
 
-
-
-/* 
-    this.insert = function () {
-        var blocMap = document.createElement("div");
-        blocMap.id = "blocMap";
-        document.body.appendChild(blocMap);
-
-        var map = document.createElement("div");
-        map.id = "map";
-
-        document.getElementById("blocMap").appendChild(map);
-    };*/

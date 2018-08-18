@@ -1,5 +1,6 @@
 function MarkerClusterer() {
     var self = this;
+    this.reservation = document.getElementById("reservation");
 
     this.init = function () {
 
@@ -43,9 +44,11 @@ function MarkerClusterer() {
                     if (statMark[z].available_bikes === 0) {
                         document.getElementById("blocInfo").appendChild(self.indispo);
                     } else {
-                        document.getElementById("blocInfo").appendChild(self.blocButton);
-                        document.getElementById("blocButton").appendChild(self.reservation);
+                        self.reservation.style.visibility = "visible";
+
                     }
+
+
 
                 })
 
@@ -64,7 +67,7 @@ function MarkerClusterer() {
             }
         })
 
-        
+
     }
 
 
@@ -72,28 +75,29 @@ function MarkerClusterer() {
     this.insert = function () {
         self.blocInfo = document.getElementById("blocInfo");
 
-        var Info = "<p id ='info'>Cliquez <br/> sur un marqueur pour afficher les informations de la station associée !</p>";
-        self.blocInfo.innerHTML = Info;
+        //var Info = "<p id ='info'>Cliquez <br/> sur un marqueur pour afficher les informations de la station associée !</p>";
+        //self.blocInfo.textContent = Info;
 
         self.indispo = document.createElement("p");
         self.indispo.id = "indispo";
         self.indispo.textContent = "Il n'y à plus de vélo disponible à cette station";
-        
-        self.blocButton = document.createElement("div");
-        self.blocButton.id = "blocButton";
-        
+
+        self.blocButton = document.getElementById("blocButton");
+
+
 
         // Création bouton reserver
-        this.reservation = document.createElement("INPUT");
-        this.reservation.id = "reservation";
-        this.reservation.type = "button";
-        this.reservation.value = "Réserver";
+        self.reservation = document.getElementById("reservation");
+
 
         // quand clique sur bouton , Canvas apparait
         this.reservation.addEventListener('click', function () {
             var canvas = new Canvas();
             canvas.init();
-            
+
+            var canvasElt = document.getElementById("canvas");
+            canvasElt.style.visibility = "visible";
+
         })
     }
 }

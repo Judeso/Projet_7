@@ -1,20 +1,55 @@
 @media screen and (max-width: 1024px) {
+    body {
+        height: 2000px;
+
+    }
+    
+    #slider, #slider img {
+        max-height: 300px;
+    }
+    #prec,
+    #nxt{
+        max-height: 40px;
+        max-width: 40px;
+        line-height: 30px;
+    }
+    
     #blocMap {
+        display: flex;
         flex-direction: column;
     }
 
-    #map {
+    
+    section, #blocMap {
+        min-height: 1000px;
+    }
+    
+    #map, #contentInfo, #blocInfo, #reservation, #confirm, #blocReserv {
         min-width: 100%;
     }
-
+    #reservation, #confirm {
+        max-height: 50px;
+    }
+    #paragraphe p {
+        max-width: 80%;
+    }
+        
+    #blocReserv {
+        min-height: 200px;
+        
+    }
 }
 div {
     position: relative;
 }
 
 body {
-
     width: 99%;
+}
+
+header {
+    position: relative;
+    background-color: #0101DF;
 }
 
 #titre {
@@ -44,16 +79,16 @@ img {
     width: 80px;
     height: 80px;
     background: black;
-    margin-top: 250px;
+    top: 50%;
     opacity: 0.5;
     cursor: pointer;
     color: white;
-    font-size: 35px;
+    font-size: 24px;
 }
 
 #prec {
     float: left;
-    left: 13px;
+    left: 0;
     border-radius: 0 150px 150px 0;
 }
 
@@ -68,6 +103,15 @@ img {
     margin-top: 20%;
     justify-content: center;
 
+}
+section {
+    background-color: darkred;
+    height 500px;
+    width: 100%;
+}
+section h2 {
+    text-align: center;
+    color: white;
 }
 
 #blocMap {
@@ -127,7 +171,8 @@ img {
 }
 
 #reservation {
-    background-color: #8258FA;
+    background-color: darkred;
+    border: 1px solid darkred;
     width: 15%;
     height: 150px;
     padding: auto;
@@ -180,12 +225,13 @@ img {
 
 #blocReserv {
     float:left;
-    width: 45%;
+    width: 47%;
     height: 150px;
     text-align: center;
-    border-radius: 0px 0px 50px 50px;
+    border-radius: 0px 0px 50px 0px;
     background-color: rgba(0, 0, 0, 0.5);
     color: white;
     font-size: 24px;
-    position: relative;
+    position: fixed;
+    bottom: 0;
 }

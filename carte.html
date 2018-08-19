@@ -1,5 +1,5 @@
 <!doctype html>
-<html>
+<html lang="fr">
 
 <head>
     <meta charset="utf-8">
@@ -9,24 +9,29 @@
 </head>
 
 <body>
-    <h1 id="titre">Location de Vélo'v</h1>
-    <div id="slider">
-        <div id="prec">
-            <div class="arrow">&#10094;</div>
+    <header>
+        <h1 id="titre">Location de Vélo'v</h1>
+        <div id="slider">
+            <div id="prec">
+                <div class="arrow">&#10094;</div>
+            </div>
+            <div id="nxt">
+                <div class="arrow">&#10095;</div>
+            </div>
         </div>
-        <div id="nxt">
-            <div class="arrow">&#10095;</div>
+    </header>
+    <section>
+        <h2>Réservez votre vélo'V !</h2>
+        <div id="blocMap">
+            <div id="map"></div>
+            <div id="blocInfo">
+            </div>
         </div>
-    </div>
-    <div id="blocMap">
-        <div id="map"></div>
-        <div id="blocInfo">
-        </div>
-    </div>
-    <input id="reservation" type="button" value="Réservation" />
-                <canvas id="canvas" style="width: 200; height: 100;"></canvas>
-                <input id="confirm" type="button" value="Confirmer"/>
-    <div id="blocReserv"></div>
+    </section>
+    <input id="reservation" type="button" value="Réserver" />
+    <canvas id="canvas" style="width: 300px; height: 150px;"></canvas>
+    <input id="confirm" type="button" value="Confirmer" />
+    <footer id="blocReserv"></footer>
 
 
     <script src="js/ajax.js"></script>
@@ -41,7 +46,7 @@
     <script src="js/app.js"></script>
 
 
-    <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCfPOajQHf6Q_gh-WvDkt7A0-uF4rmiaNA&callback=initMap" type="text/javascript">
+    <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCfPOajQHf6Q_gh-WvDkt7A0-uF4rmiaNA&callback=initMap">
 
 
     </script>

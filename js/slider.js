@@ -71,14 +71,18 @@ function Slider() {
         var nxt = document.getElementById('nxt');
 
         prec.addEventListener('click', function () {
+            if(self.i !== 0) {
             self.i--;
+            }
             self.myImg.src = self.imgArray[self.i].src;
             console.log("valeur de l'indice" + self.i);
         })
 
         nxt.addEventListener('click', function () {
+            if(self.i !== 2) {
             self.i++;
-
+            }
+            
             self.myImg.src = self.imgArray[self.i].src;
             console.log("valeur de l'indice" + self.i);
             console.log(self.total)

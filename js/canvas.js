@@ -4,6 +4,8 @@ function Canvas() {
     this.init = function () {
         
         // Réglages de canvas  
+        
+        
         context = document.getElementById('canvas').getContext("2d");
 
         $('#canvas').mousedown(function(e) {
@@ -29,6 +31,11 @@ function Canvas() {
         $('#canvas').mouseleave(function(e) {
             paint = false;
         });
+        
+        //For Mobile
+    //$('#canvas').addEventListener("touchstart", mousedown, false);
+    //$('#canvas').addEventListener("touchmove", mouseXY, true);
+    //$('#canvas').addEventListener("touchend", mouseup, false);
 
         var clickX = new Array();
         var clickY = new Array();
